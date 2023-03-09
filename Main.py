@@ -36,7 +36,7 @@ async def handleAnim(currentFrame, interaction, animation):
 
 @tree.command(name = "saveanimation", description = "Register a new animation. Format \"[string]^^[duration]|[string]^^duration|...\"\"a^^1|b^^0.5\"")
 async def newAnimation(interaction, animname: str, animdata: str):
-    animation = AnimHandler.stringToAnimation(animname, animdata)
+    animation = AnimHandler.stringToAnimation(interaction.user.id, animname, animdata)
     if StorageHandler.saveAnimation(animation):
         await interaction.response.send_message("Saved animation")
     else:
@@ -44,7 +44,7 @@ async def newAnimation(interaction, animname: str, animdata: str):
     
 @tree.command(name = "rawanimation", description = "Play an unsaved animation. Format \"[string]^^[duration]|[string]^^duration|...\"\"a^^1|b^^0.5\"")
 async def rawAnimation(interaction, animdata: str):
-    animation = AnimHandler.stringToAnimation("", animdata)
+    animation = AnimHandler.stringToAnimation(interaction.user.id, "", animdata)
     
     currentFrame = animation.nextFrame()
     await interaction.response.send_message(currentFrame.string)
@@ -67,6 +67,15 @@ async def runAnimation(interaction, animname: str):
 @tree.command(name = "getanimationlist", description = "Get a list of all animations")
 async def rawAnimation(interaction):
     await interaction.response.send_message("Here's a list of all stored animations:\n" + StorageHandler.getAllAnimationNamesAsString())
+
+@tree.command(name = "deleteanimation", description = "Deletes an animation given a name. Must've been the creator.")
+async def delAnimation(interaction, animname:str):
+    animation = StorageHandler.getAnimation(animname)
+    print(str(animation.author) + " : " + str(interaction.user.id))
+    if interaction.user.id == animation.author and StorageHandler.deleteAnimation(animname):
+        await interaction.response.send_message("Deleted the animation " + animname)
+    else:
+        await interaction.response.send_message("Either did not find the animation, or you are not its author.")
 
 @client.event
 async def on_reaction_add(reaction, _):
@@ -93,8 +102,5 @@ async def on_message(message):
         if message.author.id == 186179251203080193 or message.author.id == 275733181259448320:
             await tree.sync()
             await message.channel.send("Syncronized commands!")
-    
-    if message.content.startswith('$hello'):
-        await message.channel.send('Hello!')
 
 client.run(TOKEN)

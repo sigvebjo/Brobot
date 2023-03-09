@@ -28,11 +28,22 @@ def saveAnimation(anim: AnimHandler.Animation) -> bool:
         return True
     return False
 
+def deleteAnimation(animName: str) -> bool:
+    if storage.getAnimationByName(animName) != None:
+        store = storage.getJson()
+        store.pop(animName)
+        storage.setJson(store)
+        return True
+    return False
+
 def getAnimation(animName: str) -> AnimHandler.Animation:
     animation = storage.getAnimationByName(animName)
     if animation != None:
-        anim = AnimHandler.Animation(animName)
-        for frame in animation:
+        author = 0
+        if "author" in animation:
+            author = animation["author"]
+        anim = AnimHandler.Animation(animName, int(author))
+        for frame in animation["frames"]:
             anim.addFrame(AnimHandler.Frame(frame["string"], float(frame["duration"])))
         return anim
     return None

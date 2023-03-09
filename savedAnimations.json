@@ -1,1 +1,158 @@
-{"wheelchair": [{"string": "\u2b1b\u2b1b\u2b1b", "duration": 0.2}, {"string": "\u267f\u2b1b\u2b1b", "duration": 0.2}, {"string": "\ud83d\udd25\u267f\u2b1b", "duration": 0.2}, {"string": "\u2b1b\ud83d\udd25\u267f", "duration": 0.2}, {"string": "\u2b1b\u2b1b\ud83d\udd25", "duration": 0.2}, {"string": "\u2b1b\u2b1b\u2b1b", "duration": 0.2}],"pregnant-man-warning": [{"string": "\u26a0\ufe0f\u26a0\ufe0f\u26a0\ufe0f", "duration": 0.5}, {"string": "\u2b1b\u2b1b\u2b1b", "duration": 0.5}, {"string": "\u26a0\ufe0f\u26a0\ufe0f\u26a0\ufe0f", "duration": 0.5}, {"string": "\u2b1b\u2b1b\u2b1b", "duration": 0.5}, {"string": "\u2b1b\u2b1b\ud83e\udec3", "duration": 0.2}, {"string": "\u2b1b\ud83e\udec3\ud83d\udd25", "duration": 0.2}, {"string": "\ud83e\udec3\ud83d\udd25\ud83d\udd25", "duration": 0.2}, {"string": "\ud83d\udd25\ud83d\udd25\u2b1b", "duration": 0.2}, {"string": "\ud83d\udd25\u2b1b\u2b1b", "duration": 0.2}, {"string": "\u2b1b\u2b1b\u2b1b", "duration": 1.0}]}
+{
+    "wheelchair": {
+        "frames": [
+            {
+                "string": "\u2b1b\u2b1b\u2b1b",
+                "duration": 0.2
+            },
+            {
+                "string": "\u267f\u2b1b\u2b1b",
+                "duration": 0.2
+            },
+            {
+                "string": "\ud83d\udd25\u267f\u2b1b",
+                "duration": 0.2
+            },
+            {
+                "string": "\u2b1b\ud83d\udd25\u267f",
+                "duration": 0.2
+            },
+            {
+                "string": "\u2b1b\u2b1b\ud83d\udd25",
+                "duration": 0.2
+            },
+            {
+                "string": "\u2b1b\u2b1b\u2b1b",
+                "duration": 0.2
+            }
+        ]
+    },
+    "pregnant-man-warning": {
+        "frames": [
+            {
+                "string": "\u26a0\ufe0f\u26a0\ufe0f\u26a0\ufe0f",
+                "duration": 0.5
+            },
+            {
+                "string": "\u2b1b\u2b1b\u2b1b",
+                "duration": 0.5
+            },
+            {
+                "string": "\u26a0\ufe0f\u26a0\ufe0f\u26a0\ufe0f",
+                "duration": 0.5
+            },
+            {
+                "string": "\u2b1b\u2b1b\u2b1b",
+                "duration": 0.5
+            },
+            {
+                "string": "\u2b1b\u2b1b\ud83e\udec3",
+                "duration": 0.2
+            },
+            {
+                "string": "\u2b1b\ud83e\udec3\ud83d\udd25",
+                "duration": 0.2
+            },
+            {
+                "string": "\ud83e\udec3\ud83d\udd25\ud83d\udd25",
+                "duration": 0.2
+            },
+            {
+                "string": "\ud83d\udd25\ud83d\udd25\u2b1b",
+                "duration": 0.2
+            },
+            {
+                "string": "\ud83d\udd25\u2b1b\u2b1b",
+                "duration": 0.2
+            },
+            {
+                "string": "\u2b1b\u2b1b\u2b1b",
+                "duration": 1.0
+            }
+        ]
+    },
+    "wheelchair-golf": {
+        "frames": [
+            {
+                "string": "\u2b1b\ud83d\udc68\u200d\ud83e\uddbd\ud83e\uddcd\u200d\u2642\ufe0f",
+                "duration": 1.0
+            },
+            {
+                "string": "\u2b1b\ud83d\udc68\u200d\ud83e\uddbd\ud83c\udfcc\ufe0f\u200d\u2642\ufe0f",
+                "duration": 1.0
+            },
+            {
+                "string": "\ud83e\udd38\u200d\u2642\ufe0f\ud83e\uddbd\ud83c\udfcc\ufe0f\u200d\u2642\ufe0f",
+                "duration": 1.0
+            },
+            {
+                "string": "\u2b1b\ud83e\uddbd\ud83e\uddcd\u200d\u2642\ufe0f",
+                "duration": 1.0
+            }
+        ]
+    },
+    "drums": {
+        "frames": [
+            {
+                "string": "\u2b1b \u2b1b \u2b1b ",
+                "duration": 1.0
+            },
+            {
+                "string": "\ud83e\udd41 \u2b1b \u2b1b ",
+                "duration": 1.0
+            },
+            {
+                "string": "\ud83e\udd41 \u2728 \u2b1b ",
+                "duration": 1.0
+            },
+            {
+                "string": "\ud83e\udd41 \u2728 \u2728 ",
+                "duration": 1.0
+            },
+            {
+                "string": "\ud83e\udd41 \u2728 \u2728 \ud83d\udd25 ",
+                "duration": 1.0
+            }
+        ]
+    },
+    "arsonist": {
+        "frames": [
+            {
+                "string": "\ud83c\udfe1 \ud83c\udf32 \ud83c\udf33 ",
+                "duration": 1.0
+            },
+            {
+                "string": "\ud83c\udfe1 \ud83c\udf32 \ud83c\udf33\u2b1b  \ud83d\udeb6\u200d\u2642\ufe0f ",
+                "duration": 1.0
+            },
+            {
+                "string": "\ud83c\udfe1 \ud83c\udf32 \ud83c\udf33  \ud83d\udeb6\u200d\u2642\ufe0f\u2b1b  ",
+                "duration": 1.0
+            },
+            {
+                "string": "\ud83c\udfe1 \ud83c\udf32 \ud83d\udd25   \ud83e\uddcd\u200d\u2642\ufe0f \u2b1b  ",
+                "duration": 1.0
+            },
+            {
+                "string": "\ud83c\udfe1 \ud83d\udd25  \ud83d\udd25   \ud83e\uddcd\u200d\u2642\ufe0f \u2b1b  ",
+                "duration": 1.0
+            },
+            {
+                "string": "\ud83d\udeb6\u200d\u2642\ufe0f \ud83c\udfda\ufe0f \ud83d\udc80 \ud83d\udc80 \u2b1b ",
+                "duration": 1.0
+            },
+            {
+                "string": "\ud83d\ude2d \ud83e\udea6 \ud83e\udea6 \ud83c\udf27\ufe0f ",
+                "duration": 1.0
+            },
+            {
+                "string": "\ud83e\udd2c  \ud83e\udef5 \ud83e\uddcd\u200d\u2642\ufe0f ",
+                "duration": 1.0
+            },
+            {
+                "string": " \ud83e\udd37 ",
+                "duration": 1.0
+            }
+        ]
+    }
+}

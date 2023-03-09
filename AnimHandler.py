@@ -1,5 +1,3 @@
-import asyncio
-
 class Frame:
     """A part of an animation. Acts as a container
     for a string and the duration for that string
@@ -12,8 +10,11 @@ class Frame:
 class Animation:
     """A collection of Frames, responsible for iterating through an animation.
     """
-    def __init__(self, name: str):
+    def __init__(self, name: str, authorId: int = 0):
+        if authorId == None:
+            authorId = 0
         self.name = name
+        self.author = authorId
         self.frames = []
         self.frame = 0
         self.asyncWait = 0
@@ -50,13 +51,15 @@ class Animation:
         return currentFrame
     
     def toJson(self) -> dict:
-        data = []
+        data = {}
+        data["author"] = self.author
+        data["frames"] = []
         for frame in self.frames:
-            data.append({"string": frame.string, "duration": frame.duration})
+            data["frames"].append({"string": frame.string, "duration": frame.duration})
 
         return data
     
-def stringToAnimation(name:str, string: str) -> Animation:
+def stringToAnimation(author:int, name:str, string: str) -> Animation:
     """Attempts to generate an animation given a string
 
     Args:
@@ -66,7 +69,7 @@ def stringToAnimation(name:str, string: str) -> Animation:
         Animation: An animation containing the frames
     """
     data = string.split("|")
-    anim = Animation(name)
+    anim = Animation(name, author)
     for frame in data:
         content = frame.split("^^")
         if len(content) < 2:
