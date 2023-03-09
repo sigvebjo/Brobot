@@ -5,6 +5,8 @@ from discord import app_commands
 from dotenv import load_dotenv
 import os
 import time
+import threading
+import asyncio
 
 import AnimHandler
 import StorageHandler
@@ -22,7 +24,14 @@ tree = app_commands.CommandTree(client)
 async def on_ready():
     print(f'We have logged in as {client.user}')
 
-@tree.command(name = "newanimation", description = "Register a new animation. Format \"[string]^^[duration]|[string]^^duration|...\"\"a^^1|b^^0.5\"")
+async def handleAnim(currentFrame, interaction, animation):
+    while (animation.hasNextFrame()):
+        await asyncio.sleep(currentFrame.duration)
+        currentFrame = animation.nextFrame()
+        await interaction.edit_original_response(content=currentFrame.string)
+
+
+@tree.command(name = "saveanimation", description = "Register a new animation. Format \"[string]^^[duration]|[string]^^duration|...\"\"a^^1|b^^0.5\"")
 async def newAnimation(interaction, animname: str, animdata: str):
     animation = AnimHandler.stringToAnimation(animname, animdata)
     if StorageHandler.saveAnimation(animation):
@@ -30,6 +39,13 @@ async def newAnimation(interaction, animname: str, animdata: str):
     else:
         await interaction.response.send_message("Animation with this name already exists")
     
+@tree.command(name = "rawanimation", description = "Play an unsaved animation. Format \"[string]^^[duration]|[string]^^duration|...\"\"a^^1|b^^0.5\"")
+async def rawAnimation(interaction, animdata: str):
+    animation = AnimHandler.stringToAnimation("", animdata)
+    
+    currentFrame = animation.nextFrame()
+    await interaction.response.send_message(currentFrame.string)
+    await handleAnim(currentFrame, interaction, animation)
         
 @tree.command(name = "playanimation", description = "Play an animation by name")
 async def runAnimation(interaction, animname: str):
@@ -41,10 +57,7 @@ async def runAnimation(interaction, animname: str):
 
     currentFrame = animation.nextFrame()
     await interaction.response.send_message(currentFrame.string)
-    while (animation.hasNextFrame()):
-        time.sleep(currentFrame.duration)
-        currentFrame = animation.nextFrame()
-        await interaction.edit_original_response(content=currentFrame.string)
+    await handleAnim(currentFrame, interaction, animation)
 
 @client.event
 async def on_message(message):
@@ -57,7 +70,7 @@ async def on_message(message):
     if message.content.startswith("/sync"):
         if message.author.id == 186179251203080193 or message.author.id == 275733181259448320:
             await tree.sync()
-            await message.channel.send("Syncronized commands!")
+            message.channel.send("Syncronized commands!")
     
     if message.content.startswith('$hello'):
         await message.channel.send('Hello!')

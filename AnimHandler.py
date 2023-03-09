@@ -22,6 +22,9 @@ class Animation:
     def addFrame(self, frame: Frame) -> None:
         self.frames.append(frame)
 
+    def getCurrentFrame(self) -> Frame:
+        return self.frames[self.frame]
+
     def hasNextFrame(self) -> bool:
         """Checks if the Animation has more frames.
 
