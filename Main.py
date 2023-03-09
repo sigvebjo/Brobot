@@ -4,8 +4,6 @@ import discord
 from discord import app_commands
 from dotenv import load_dotenv
 import os
-import time
-import threading
 import asyncio
 
 import AnimHandler
@@ -59,6 +57,10 @@ async def runAnimation(interaction, animname: str):
     await interaction.response.send_message(currentFrame.string)
     await handleAnim(currentFrame, interaction, animation)
 
+@tree.command(name = "getanimationlist", description = "Get a list of all animations")
+async def rawAnimation(interaction):
+    await interaction.response.send_message("Here's a list of all stored animations:\n" + StorageHandler.getAllAnimationNamesAsString())
+
 @client.event
 async def on_message(message):
     if message.author == client.user:
@@ -70,7 +72,7 @@ async def on_message(message):
     if message.content.startswith("/sync"):
         if message.author.id == 186179251203080193 or message.author.id == 275733181259448320:
             await tree.sync()
-            message.channel.send("Syncronized commands!")
+            await message.channel.send("Syncronized commands!")
     
     if message.content.startswith('$hello'):
         await message.channel.send('Hello!')

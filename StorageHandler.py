@@ -36,3 +36,17 @@ def getAnimation(animName: str) -> AnimHandler.Animation:
             anim.addFrame(AnimHandler.Frame(frame["string"], float(frame["duration"])))
         return anim
     return None
+
+def getAllAnimationNames():
+    data = storage.getJson()
+    names = []
+    for name in data:
+        names.append(name)
+    return names
+
+def getAllAnimationNamesAsString() -> str:
+    names = getAllAnimationNames()
+    string = ""
+    for name in names:
+        string += name + "\n"
+    return string
