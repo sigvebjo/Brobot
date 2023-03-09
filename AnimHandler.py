@@ -16,8 +16,10 @@ class Animation:
         self.name = name
         self.frames = []
         self.frame = 0
-        self.currentFrame = None
         self.asyncWait = 0
+
+    def restart(self):
+        self.frame = 0
 
     def addFrame(self, frame: Frame) -> None:
         self.frames.append(frame)
@@ -45,7 +47,6 @@ class Animation:
         if self.frame < len(self.frames):
             currentFrame = self.frames[self.frame]
             self.frame += 1
-        self.currentFrame = currentFrame
         return currentFrame
     
     def toJson(self) -> dict:

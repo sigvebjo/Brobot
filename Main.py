@@ -18,6 +18,11 @@ TOKEN = os.getenv('DISCORD_TOKEN')
 client = discord.Client(intents=intents)
 tree = app_commands.CommandTree(client)
 
+sentMessages = {}
+
+def saveMessage(messageId, interaction, animation):
+    sentMessages[messageId] = [interaction, animation]
+
 @client.event
 async def on_ready():
     print(f'We have logged in as {client.user}')
@@ -44,6 +49,7 @@ async def rawAnimation(interaction, animdata: str):
     currentFrame = animation.nextFrame()
     await interaction.response.send_message(currentFrame.string)
     await handleAnim(currentFrame, interaction, animation)
+    saveMessage(interaction.id, interaction, animation)
         
 @tree.command(name = "playanimation", description = "Play an animation by name")
 async def runAnimation(interaction, animname: str):
@@ -56,10 +62,24 @@ async def runAnimation(interaction, animname: str):
     currentFrame = animation.nextFrame()
     await interaction.response.send_message(currentFrame.string)
     await handleAnim(currentFrame, interaction, animation)
+    saveMessage(interaction.id, interaction, animation)
 
 @tree.command(name = "getanimationlist", description = "Get a list of all animations")
 async def rawAnimation(interaction):
     await interaction.response.send_message("Here's a list of all stored animations:\n" + StorageHandler.getAllAnimationNamesAsString())
+
+@client.event
+async def on_reaction_add(reaction, _):
+    if reaction.message.author.id == client.user.id:
+        if reaction.message.interaction != None:
+            if reaction.message.interaction.id in sentMessages:
+                content = sentMessages[reaction.message.interaction.id]
+                interaction = content[0]
+                animation = content[1]
+                animation.restart()
+                currentFrame = animation.nextFrame()
+                await interaction.edit_original_response(content=currentFrame.string)
+                await handleAnim(currentFrame, interaction, animation)
 
 @client.event
 async def on_message(message):
